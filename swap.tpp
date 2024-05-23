@@ -17,12 +17,12 @@ void swap(T &lhs, T &rhs) noexcept
     if (lhsPtr == rhsPtr)
         return;
     
-    std::byte b[sizeof(T)];
-    auto buffer = (T *) b; // N.B.: THIS IS A POINTER TO AN INVALID OBJECT!!!!
-
-    ghb::memcopy(buffer, lhsPtr);
+    unsigned char b[sizeof(T)]; // Raw memory on the stack.
+    
+    // N.B.: After the C-style cast, `*b` is of course not a valid object.
+    ghb::memcopy((T *)b, lhsPtr);
     ghb::memcopy(lhsPtr, rhsPtr);
-    ghb::memcopy(rhsPtr, buffer);
+    ghb::memcopy(rhsPtr, (T *)b);
 }
 
 }
