@@ -1,0 +1,2 @@
+        // Auxiliary (private) constructor for use with static "constructors".
+        explicit CLASSNAME(D data) : d(std::move(data)) {};

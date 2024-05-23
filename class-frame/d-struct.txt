@@ -1,0 +1,9 @@
+    struct D
+    {
+        // Private datamembers go here:
+
+
+
+
+
+    } d; // Only instance of this object that should be instantiated.

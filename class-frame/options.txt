@@ -1,0 +1,30 @@
+name
+
+class type: (N)ormal, (p)olicy, (t)emplate, (c)RTP
+
+abstract base class
+swap
+
+guard clause
+
+constructors
+named constructors
+D(ata), S(tatic) and G(lobal) object
+
+assignment semantics:
+(c)opy, (m)ove, or (N)either
+thus also: .clone() etc.
+
+
+index operator/proxy
+
+update macroundef
+
+create member function
+t(emplate)
+i(nline)
+
+
+other creation things:
+metaprogramming templates
+free functions (templates, overloads)
