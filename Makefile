@@ -112,7 +112,7 @@ ALL_FILES := $(patsubst ./%,%,$(call rwildcard,.,*))
 # Autodetection of file extensions.
 first_extension_found = $(patsubst .%,%,$(or $(firstword $(foreach X,$1,$(filter %.$X,$(suffix $(ALL_FILES))))),$(firstword $1)))
 
-CXXFLAGS += -Wall -std=c++20
+CXXFLAGS += -Wall -Werror -std=c++23
 #LDFLAGS += -lrt -ldl -lpthread -lm -lz -ltinfo
 
 # The file hooks.mk will be included if it exists.

@@ -1,12 +1,31 @@
-#include "make_optional_fn.tpp"
 #include <iostream>
+#include <stdexcept>
+#include <string>
+
+#include "make_optional.tpp"
+#include "make_expected.tpp"
 
 using namespace std;
+
+class ZeroDivisionError : public exception
+{
+    string d_msg;
+
+    public:
+        explicit ZeroDivisionError(string const &s)
+        : d_msg(s) {}
+
+        char const *what() const noexcept override
+        {
+            return d_msg.c_str();
+        }
+};
+
 
 double my_div(double top, double bottom)
 {
     if (bottom == 0)
-        throw("ZeroDivisionError");
+        throw(ZeroDivisionError("test"));
 
     return top / bottom;
 }
@@ -14,14 +33,18 @@ double my_div(double top, double bottom)
 int main()
 try
 {
-    cout << my_div(1, 2) << '\n';
+    // my_div(1, 0);
+    
+    auto better_div = ghb::make_expected(my_div);
 
-    std::function<double (double, double)> better_div = ghb::make_optional_fn(my_div);
-    cout << better_div(1, 0) << '\n';
+    auto rv = better_div(1, 0);
 
-    cout << my_div(1, 4) << '\n';
+    if (rv.has_value())
+        cout << "this is not printed" << '\n';
+    else
+        cout << rv.error() << '\n';
 }
-catch(...)
+catch(exception const &e)
 {
-    cout << "Some exception was thrown." << '\n';
+    cout << e.what() << '\n';
 }
