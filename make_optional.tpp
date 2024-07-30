@@ -13,9 +13,10 @@ namespace ghb
  */ 
 
 template<typename Rv, typename... Args>
-std::function<std::optional<Rv> (Args...)> make_optional(std::function<Rv (Args...)> func) noexcept
+std::function<std::optional<Rv> (Args...)>
+make_optional(std::function<Rv (Args...)> func) noexcept
 {
-    return [func](Args... args) noexcept -> std::optional<Rv>
+    return [&func](Args... args) noexcept -> std::optional<Rv>
     {
         try
         {
