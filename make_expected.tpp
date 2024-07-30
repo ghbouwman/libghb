@@ -29,7 +29,7 @@ make_expected(std::function<Rv (Args...)> func,
                   }
              ) noexcept
 {
-    return [func, handle](Args... args) noexcept -> std::expected<Rv, ErrorT>
+    return [&func, &handle](Args... args) noexcept -> std::expected<Rv, ErrorT>
     {
         try
         {
