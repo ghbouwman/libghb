@@ -19,7 +19,7 @@ void swap(T &lhs, T &rhs) noexcept
     
     unsigned char b[sizeof(T)]; // Raw memory on the stack.
     
-    // N.B.: After the C-style cast, `*b` is of course not a valid object.
+    // N.B.: After the C-style cast, `b` is of course not a valid `T` object.
     ghb::memcopy((T *)b, lhsPtr);
     ghb::memcopy(lhsPtr, rhsPtr);
     ghb::memcopy(rhsPtr, (T *)b);
