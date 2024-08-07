@@ -3,7 +3,7 @@
 
 
 
-class CLASSNAME : ABC
+class CLASSNAME
 {
     struct D
     {

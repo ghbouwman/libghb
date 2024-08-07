@@ -1,6 +1,6 @@
 #include <cstddef>
 
-#include "memcopy.tpp"
+#include "mem.tpp"
 
 namespace ghb
 {
@@ -17,12 +17,12 @@ void swap(T &lhs, T &rhs) noexcept
     if (lhsPtr == rhsPtr)
         return;
     
-    unsigned char b[sizeof(T)]; // Raw memory on the stack.
+    std::byte b[sizeof(T)]; // Raw memory on the stack.
     
     // N.B.: After the C-style cast, `b` is of course not a valid `T` object.
-    ghb::memcopy((T *)b, lhsPtr);
-    ghb::memcopy(lhsPtr, rhsPtr);
-    ghb::memcopy(rhsPtr, (T *)b);
+    ghb::memcpy((T *)b, lhsPtr);
+    ghb::memcpy(lhsPtr, rhsPtr);
+    ghb::memcpy(rhsPtr, (T *)b);
 }
 
 }

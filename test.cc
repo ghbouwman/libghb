@@ -4,6 +4,8 @@
 
 #include "make_optional.tpp"
 #include "make_expected.tpp"
+#include "big-num/big-num.hh"
+#include "dropped/dropped.hh"
 
 using namespace std;
 
@@ -30,6 +32,7 @@ double my_div(double top, double bottom)
     return top / bottom;
 }
 
+/*
 int main()
 try
 {
@@ -48,3 +51,29 @@ catch(exception const &e)
 {
     cout << e.what() << '\n';
 }
+*/
+
+int main()
+{
+    string x{"test"};
+    auto xp = &x;
+    cout << ghb::drop(x) << '\n';
+    cout << x << '\n';
+    cout << xp << '\n';
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

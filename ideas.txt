@@ -1,0 +1,5 @@
+safeptr
+universal pointer
+return by ref casting
+unique cast
+useful macros
