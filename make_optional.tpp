@@ -13,16 +13,16 @@ namespace ghb
  */ 
 
 template<typename Rv, typename... Args>
-std::function<std::optional<Rv> (Args...)>
-make_optional(std::function<Rv (Args...)> func) noexcept
+auto make_optional(std::function<Rv (Args...)> func) noexcept
+-> std::function<std::optional<Rv> (Args...)>
 {
-    return [&func](Args... args) noexcept -> std::optional<Rv>
+    return [func](Args... args) noexcept -> std::optional<Rv>
     {
         try
         {
             return func(std::forward<Args>(args)...); 
         }
-        catch(...)
+        catch (...)
         {
             return std::nullopt;
         }
@@ -31,11 +31,11 @@ make_optional(std::function<Rv (Args...)> func) noexcept
 
 // Overload for function pointers.
 template<typename Rv, typename... Args>
-inline auto make_optional(Rv (*fptr)(Args...)) noexcept
+constexpr auto make_optional(Rv (*fptr)(Args...)) noexcept
 {
     std::function<Rv (Args...)> func = fptr;
     return make_optional(func);
 }
 
-}
+} // namespace ghb
 

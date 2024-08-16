@@ -55,13 +55,18 @@ catch(exception const &e)
 
 int main()
 {
-    string x{"test"};
+    string x{"test x"};
     auto xp = &x;
-    cout << ghb::drop(x) << '\n';
+    cout << move(x) << '\n';
     cout << x << '\n';
     cout << xp << '\n';
 
 
+    string y{"test y"};
+    auto yp = &y;
+    cout << ghb::drop(y) << '\n';
+    cout << y << '\n';
+    cout << yp << '\n';
 }
 
 

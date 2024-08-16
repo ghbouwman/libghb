@@ -25,7 +25,7 @@ T *memcpy(T *dest, T const *src, size_t nr = 1) noexcept
 } 
 
 template<typename T>
-T *memset(T *dest, std::byte ch, size_t nr = 1, bool force=true) noexcept
+T *memset(T *dest, int ch, size_t nr = 1, bool force=true) noexcept
 // Templated wrapper around memset(_explicit).
 //
 // Return value is `dest` cast to `T *`, which is in accordance with the return
@@ -47,13 +47,17 @@ T *memset(T *dest, std::byte ch, size_t nr = 1, bool force=true) noexcept
         (*fptr)
         (
             static_cast<void *>(dest),
-            static_cast<int>(ch),
+            ch,
             sizeof(T) * nr
         )
     );
 } 
 
-
+template<typename T>
+void annihilate(T &obj)
+{
+    ghb::memset(&obj, 0);
+}
 
 
 
