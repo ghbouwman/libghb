@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <string>
 
+#include "ptr/ptr.hh"
 #include "make_optional.tpp"
 #include "make_expected.tpp"
 #include "big-num/big-num.hh"
